@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // --- CONFIGURATION ---
-const POSTS_PER_PAGE = 20;
+const POSTS_PER_PAGE = 15;
 const pagesDir = path.join(__dirname, '../pages');
 const templatePath = path.join(__dirname, '../_templates/index.html');
 const siteDir = path.join(__dirname, '../_site');
@@ -141,7 +141,7 @@ function run() {
 
         console.log(`Successfully built page ${i} to ${path.join(pageOutputDir, 'index.html')}`);
     }
-    
+
     console.log(`
 Total pages built: ${totalPages}`);
 }
