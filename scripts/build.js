@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // --- CONFIGURATION ---
-const POSTS_PER_PAGE = 15;
+const POSTS_PER_PAGE = 10;
 const pagesDir = path.join(__dirname, '../pages');
 const templatePath = path.join(__dirname, '../_templates/index.html');
 const siteDir = path.join(__dirname, '../_site');
