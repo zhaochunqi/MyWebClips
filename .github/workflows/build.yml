@@ -28,6 +28,14 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Cache metadata
+        uses: actions/cache@v4
+        with:
+          path: .metadata.json
+          key: metadata-${{ hashFiles('pages/**/*.html') }}
+          restore-keys: |
+            metadata-
+
       - name: Build static pages
         run: node scripts/build.js
 

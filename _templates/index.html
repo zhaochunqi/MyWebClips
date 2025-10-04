@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文章归档</title>
+    <link rel="alternate" type="application/rss+xml" title="网页剪辑归档 RSS" href="/rss.xml">
     <style>
         :root {
             --primary-color: #4361ee;
@@ -150,6 +151,33 @@
             font-size: 0.9rem;
         }
 
+        .rss-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #ff6600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .rss-button:hover {
+            background-color: #e55a00;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+        }
+
+        .rss-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
         footer {
             text-align: center;
             margin-top: 40px;
@@ -180,6 +208,12 @@
         <header>
             <h1>文章归档</h1>
             <p>收集的有价值网页内容</p>
+            <a href="/rss.xml" class="rss-button" target="_blank" title="订阅RSS">
+                <svg class="rss-icon" viewBox="0 0 24 24">
+                    <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248c1.795 0 3.251 1.454 3.251 3.248zM1.677 6.155v4.301c5.493 0 9.967 4.474 9.967 9.967h4.301c0-7.93-6.338-14.268-14.268-14.268zM1.677 0v4.301c9.836 0 17.822 7.986 17.822 17.822H24c0-12.313-9.987-22.123-22.323-22.123z"/>
+                </svg>
+                订阅RSS
+            </a>
         </header>
 
         <div id="archives-container">
