@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // --- CONFIGURATION ---
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 20;
 const pagesDir = path.join(__dirname, '../pages');
 const templatePath = path.join(__dirname, '../_templates/index.html');
 const siteDir = path.join(__dirname, '../_site');
@@ -47,7 +47,7 @@ function saveMetadata(metadata) {
 function extractMetadataFromHtml(filePath) {
     try {
         const content = fs.readFileSync(filePath, 'utf-8');
-        
+
         // 提取 saved date
         let savedTimestamp = 0;
         const dateMatch = content.match(/saved date:\s*([^<\n]+)/);
@@ -56,7 +56,7 @@ function extractMetadataFromHtml(filePath) {
             savedTimestamp = new Date(dateStr).getTime() / 1000;
             if (isNaN(savedTimestamp)) savedTimestamp = 0;
         }
-        
+
         // 提取原始 URL
         let originalUrl = null;
         const urlPatterns = [
@@ -66,7 +66,7 @@ function extractMetadataFromHtml(filePath) {
             /<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["']/,
             /<meta[^>]*name=["']twitter:url["'][^>]*content=["']([^"']+)["']/
         ];
-        
+
         for (const pattern of urlPatterns) {
             const match = content.match(pattern);
             if (match) {
@@ -74,7 +74,7 @@ function extractMetadataFromHtml(filePath) {
                 break;
             }
         }
-        
+
         // 提取描述
         let description = '';
         const descPatterns = [
@@ -82,7 +82,7 @@ function extractMetadataFromHtml(filePath) {
             /<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["']/,
             /<meta[^>]*name=["']twitter:description["'][^>]*content=["']([^"']+)["']/
         ];
-        
+
         for (const pattern of descPatterns) {
             const match = content.match(pattern);
             if (match) {
@@ -90,7 +90,7 @@ function extractMetadataFromHtml(filePath) {
                 break;
             }
         }
-        
+
         return {
             savedTimestamp,
             originalUrl,
@@ -129,7 +129,7 @@ function getArticleFromFilename(file, metadata) {
     if (metadata[file]) {
         const stat = fs.statSync(filePath);
         const fileModTime = stat.mtime.getTime();
-        
+
         // 如果文件没有被修改，使用缓存的元数据
         if (metadata[file].lastModified === fileModTime) {
             savedTimestamp = metadata[file].savedTimestamp;
@@ -141,7 +141,7 @@ function getArticleFromFilename(file, metadata) {
             savedTimestamp = extractedData.savedTimestamp;
             originalUrl = extractedData.originalUrl;
             description = extractedData.description;
-            
+
             metadata[file] = {
                 savedTimestamp,
                 originalUrl,
@@ -155,7 +155,7 @@ function getArticleFromFilename(file, metadata) {
         savedTimestamp = extractedData.savedTimestamp;
         originalUrl = extractedData.originalUrl;
         description = extractedData.description;
-        
+
         const stat = fs.statSync(filePath);
         metadata[file] = {
             savedTimestamp,
@@ -202,14 +202,14 @@ function generateArticlesHtml(articles) {
         groupedByDate[date]
             .sort((a, b) => b.savedTimestamp - a.savedTimestamp)
             .forEach(article => {
-            // Note: The href is root-relative, so it works from any page depth.
-            html += `
+                // Note: The href is root-relative, so it works from any page depth.
+                html += `
          <li class="article-item">
              <a href="/${article.path}" target="_blank" class="article-link">${article.title}</a>
              <button class="copy-btn" data-title="${escapeHtml(article.title)}" data-path="${article.path}">复制链接</button>
          </li>
  `;
-        });
+            });
         html += `    </ul>
  </div>
  `;
@@ -260,14 +260,14 @@ function generateRSSXML(articles) {
         // link使用自己网站的文章页面，guid保持唯一标识
         const linkUrl = escapeXml(generatedUrl);
         const guidUrl = escapeXml(generatedUrl);
-        
+
         // 构建描述内容，包含原链接信息
         let description = article.description || '';
         if (article.originalUrl) {
             const originalLinkText = `\n\n原文链接：${article.originalUrl}`;
             description = description ? description + originalLinkText : `查看完整内容${originalLinkText}`;
         }
-        
+
         return `    <item>
       <title><![CDATA[${article.title}]]></title>
       <link>${linkUrl}</link>
@@ -318,14 +318,14 @@ function run() {
     const existingFiles = new Set(allFiles);
     const metadataKeys = Object.keys(metadata);
     let removedCount = 0;
-    
+
     metadataKeys.forEach(filename => {
         if (!existingFiles.has(filename)) {
             delete metadata[filename];
             removedCount++;
         }
     });
-    
+
     if (removedCount > 0) {
         console.log(`Cleaned up ${removedCount} deleted file(s) from metadata cache`);
     }
