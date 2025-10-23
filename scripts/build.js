@@ -303,9 +303,16 @@ function run() {
     fs.mkdirSync(siteDir, { recursive: true });
     console.log(`Cleaned and created directory: ${siteDir}`);
 
-    // 3. Copy static assets (the 'pages' directory)
+    // 3. Copy static assets (the 'pages' directory and realtime.html)
     fs.cpSync(pagesDir, path.join(siteDir, 'pages'), { recursive: true });
     console.log(`Copied 'pages' directory to ${siteDir}`);
+
+    // Copy realtime.html to _site directory
+    const realtimeSource = path.join(__dirname, '../realtime.html');
+    if (fs.existsSync(realtimeSource)) {
+        fs.copyFileSync(realtimeSource, path.join(siteDir, 'realtime.html'));
+        console.log(`Copied realtime.html to ${siteDir}`);
+    }
 
     // 4. Read all articles and sort them
     const allFiles = fs.readdirSync(pagesDir);
