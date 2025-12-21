@@ -314,6 +314,13 @@ function run() {
         console.log(`Copied realtime.html to ${siteDir}`);
     }
 
+    // Copy robots.txt to _site directory
+    const robotsSource = path.join(__dirname, '../robots.txt');
+    if (fs.existsSync(robotsSource)) {
+        fs.copyFileSync(robotsSource, path.join(siteDir, 'robots.txt'));
+        console.log(`Copied robots.txt to ${siteDir}`);
+    }
+
     // 4. Read all articles and sort them
     const allFiles = fs.readdirSync(pagesDir);
     const allArticles = allFiles
