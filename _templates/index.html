@@ -1,268 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章归档</title>
-    <link rel="alternate" type="application/rss+xml" title="网页剪辑归档 RSS" href="/rss.xml">
-    <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --background-color: #f8f9fa;
-            --card-background: #ffffff;
-            --text-color: #333333;
-            --text-light: #6c757d;
-            --border-color: #e9ecef;
-            --success-color: #2ecc71;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .date-group {
-            margin-bottom: 30px;
-            background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .date-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .article-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .article-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.2s ease;
-        }
-
-        .article-item:last-child {
-            border-bottom: none;
-        }
-
-        .article-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        .article-link {
-            flex-grow: 1;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            margin-right: 15px;
-        }
-
-        .article-link:hover {
-            color: var(--primary-color);
-        }
-
-        .copy-btn {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 6px 12px;
-            cursor: pointer;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .copy-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .copy-btn.copied {
-            background-color: var(--success-color);
-            color: white;
-            border-color: var(--success-color);
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        .pagination-link {
-            text-decoration: none;
-            color: var(--primary-color);
-            padding: 8px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            margin: 0 5px;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .pagination-link:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .pagination-current {
-            color: var(--text-light);
-            margin: 0 15px;
-            font-size: 0.9rem;
-        }
-
-        .rss-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #ff6600;
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            margin-top: 15px;
-        }
-
-        .rss-button:hover {
-            background-color: #e55a00;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
-        }
-
-        .rss-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .article-item {
-                flex-direction: column;
-                align-items: flex-start;
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>文章归档</title>
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="网页剪辑归档 RSS"
+            href="/rss.xml"
+        />
+        <style>
+            :root {
+                --primary-color: #4361ee;
+                --secondary-color: #3a0ca3;
+                --background-color: #f8f9fa;
+                --card-background: #ffffff;
+                --text-color: #333333;
+                --text-light: #6c757d;
+                --border-color: #e9ecef;
+                --success-color: #2ecc71;
             }
-            
-            .article-link {
-                margin-right: 0;
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Helvetica, Arial, sans-serif;
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--background-color);
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 40px;
+                padding: 20px 0;
+            }
+
+            h1 {
+                color: var(--primary-color);
+                font-weight: 700;
                 margin-bottom: 10px;
             }
-            
-            .copy-btn {
-                align-self: flex-end;
+
+            .date-group {
+                margin-bottom: 30px;
+                background-color: var(--card-background);
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
             }
-        }
-    </style>
-</head>
 
-<body>
-    <div class="container">
-        <header>
-            <h1>文章归档</h1>
-            <p>收集的有价值网页内容</p>
-            <a href="/rss.xml" class="rss-button" target="_blank" title="订阅RSS">
-                <svg class="rss-icon" viewBox="0 0 24 24">
-                    <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248c1.795 0 3.251 1.454 3.251 3.248zM1.677 6.155v4.301c5.493 0 9.967 4.474 9.967 9.967h4.301c0-7.93-6.338-14.268-14.268-14.268zM1.677 0v4.301c9.836 0 17.822 7.986 17.822 17.822H24c0-12.313-9.987-22.123-22.323-22.123z"/>
-                </svg>
-                订阅RSS
-            </a>
-        </header>
+            .date-header {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 15px 20px;
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
 
-        <div id="archives-container">
-            <!-- ARCHIVES_PLACEHOLDER -->
+            .article-list {
+                list-style: none;
+                padding: 0;
+            }
+
+            .article-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+                border-bottom: 1px solid var(--border-color);
+                transition: background-color 0.2s ease;
+            }
+
+            .article-item:last-child {
+                border-bottom: none;
+            }
+
+            .article-item:hover {
+                background-color: #f8f9fa;
+            }
+
+            .article-link {
+                flex-grow: 1;
+                text-decoration: none;
+                color: var(--text-color);
+                font-weight: 500;
+                margin-right: 15px;
+            }
+
+            .article-link:hover {
+                color: var(--primary-color);
+            }
+
+            .copy-btn {
+                background-color: transparent;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                padding: 6px 12px;
+                cursor: pointer;
+                color: var(--text-light);
+                font-size: 0.85rem;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+            }
+
+            .copy-btn:hover {
+                background-color: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+            .copy-btn.copied {
+                background-color: var(--success-color);
+                color: white;
+                border-color: var(--success-color);
+            }
+
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 40px;
+            }
+
+            .pagination-link {
+                text-decoration: none;
+                color: var(--primary-color);
+                padding: 8px 16px;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                margin: 0 5px;
+                transition:
+                    background-color 0.2s,
+                    color 0.2s;
+            }
+
+            .pagination-link:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            .pagination-current {
+                color: var(--text-light);
+                margin: 0 15px;
+                font-size: 0.9rem;
+            }
+
+            .rss-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background-color: #ff6600;
+                color: white;
+                text-decoration: none;
+                padding: 10px 16px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                margin-top: 15px;
+            }
+
+            .rss-button:hover {
+                background-color: #e55a00;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+            }
+
+            .rss-icon {
+                width: 16px;
+                height: 16px;
+                fill: currentColor;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 40px;
+                color: var(--text-light);
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 768px) {
+                .article-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .article-link {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+
+                .copy-btn {
+                    align-self: flex-end;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <h1>文章归档</h1>
+                <p>收集的有价值网页内容</p>
+                <a
+                    href="/rss.xml"
+                    class="rss-button"
+                    target="_blank"
+                    title="订阅RSS"
+                >
+                    <svg class="rss-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248c1.795 0 3.251 1.454 3.251 3.248zM1.677 6.155v4.301c5.493 0 9.967 4.474 9.967 9.967h4.301c0-7.93-6.338-14.268-14.268-14.268zM1.677 0v4.301c9.836 0 17.822 7.986 17.822 17.822H24c0-12.313-9.987-22.123-22.323-22.123z"
+                        />
+                    </svg>
+                    订阅RSS
+                </a>
+            </header>
+
+            <div id="archives-container">
+                <!-- ARCHIVES_PLACEHOLDER -->
+            </div>
+
+            <div class="pagination-container">
+                <!-- PAGINATION_PLACEHOLDER -->
+            </div>
+
+            <footer>
+                <p>
+                    ©
+                    <!-- YEAR_PLACEHOLDER -->
+                    网页剪辑归档
+                </p>
+            </footer>
         </div>
 
-        <div class="pagination-container">
-            <!-- PAGINATION_PLACEHOLDER -->
-        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const container = document.getElementById("archives-container");
+                if (!container) return;
 
-        <footer>
-            <p>© <!-- YEAR_PLACEHOLDER --> 网页剪辑归档</p>
-        </footer>
-    </div>
+                container.addEventListener("click", (event) => {
+                    const button = event.target.closest(".copy-btn");
+                    if (!button) return;
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('archives-container');
-            if (!container) return;
+                    const title = button.dataset.title;
+                    const path = button.dataset.path;
+                    // Use a relative path from the root, so it works on any domain.
+                    const url = new URL(path, window.location.origin).href;
+                    const markdownLink = `[${title}](${url})`;
 
-            container.addEventListener('click', (event) => {
-                const button = event.target.closest('.copy-btn');
-                if (!button) return;
-
-                const title = button.dataset.title;
-                const path = button.dataset.path;
-                // Use a relative path from the root, so it works on any domain.
-                const url = new URL(path, window.location.origin).href;
-                const markdownLink = `[${title}](${url})`;
-
-                navigator.clipboard.writeText(markdownLink)
-                    .then(() => {
-                        button.textContent = '已复制!';
-                        button.classList.add('copied');
-                        setTimeout(() => {
-                            button.textContent = '复制链接';
-                            button.classList.remove('copied');
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('无法复制: ', err);
-                        button.textContent = '复制失败';
-                        setTimeout(() => {
-                            button.textContent = '复制链接';
-                        }, 2000);
-                    });
+                    navigator.clipboard
+                        .writeText(markdownLink)
+                        .then(() => {
+                            button.textContent = "已复制!";
+                            button.classList.add("copied");
+                            setTimeout(() => {
+                                button.textContent = "复制链接";
+                                button.classList.remove("copied");
+                            }, 2000);
+                        })
+                        .catch((err) => {
+                            console.error("无法复制: ", err);
+                            button.textContent = "复制失败";
+                            setTimeout(() => {
+                                button.textContent = "复制链接";
+                            }, 2000);
+                        });
+                });
             });
-        });
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
