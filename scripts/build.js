@@ -331,6 +331,13 @@ function run() {
     console.log(`Copied robots.txt to ${siteDir}`);
   }
 
+  // Copy favicon.svg to _site directory
+  const faviconSource = path.join(__dirname, "../favicon.svg");
+  if (fs.existsSync(faviconSource)) {
+    fs.copyFileSync(faviconSource, path.join(siteDir, "favicon.svg"));
+    console.log(`Copied favicon.svg to ${siteDir}`);
+  }
+
   // 4. Read all articles and sort them
   const allFiles = fs.readdirSync(pagesDir);
   const allArticles = allFiles
