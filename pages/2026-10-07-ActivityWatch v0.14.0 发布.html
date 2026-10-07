@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ActivityWatch v0.14.0 发布</title>
+<meta name="description" content="转发备注（Telegram，2026-10-07）：ActivityWatch 终于好起来了，感谢 agentic coding（我猜），不然这个停滞那么久的项目不会在最近疯狂爆进度">
+<link rel="canonical" href="https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0">
+<meta property="og:url" content="https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0">
+<meta property="og:title" content="ActivityWatch v0.14.0 发布">
+<meta property="og:description" content="转发备注（Telegram，2026-10-07）：ActivityWatch 终于好起来了，感谢 agentic coding（我猜），不然这个停滞那么久的项目不会在最近疯狂爆进度">
+<style>:root { color-scheme: light dark; }
+body { margin: 0 auto; max-width: 46rem; padding: 2rem 1.25rem 4rem;
+  font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+  "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+h1, h2, h3, h4 { line-height: 1.3; margin: 2rem 0 0.75rem; }
+img { max-width: 100%; height: auto; }
+pre { overflow-x: auto; padding: 0.9rem 1rem; border-radius: 8px; background: rgba(127,127,127,0.15); }
+code { padding: 0.1em 0.35em; border-radius: 4px; background: rgba(127,127,127,0.15); }
+pre code { padding: 0; background: none; }
+blockquote { margin: 1rem 0; padding: 0.25rem 1rem; border-left: 3px solid rgba(127,127,127,0.5); color: #666; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid rgba(127,127,127,0.4); padding: 0.4rem 0.6rem; }
+.source { color: #666; font-size: 0.9rem; word-break: break-all; }
+</style>
+<!--
+ Page saved with clip-intake (agent 抓取正文后生成，非 SingleFile 高保真快照)
+ url: https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0
+ saved date: 2026-10-07 21:06:43 GMT+0800
+ info: 图片保留远程 URL，未内联
+-->
+</head>
+<body>
+<article>
+<h1>ActivityWatch v0.14.0 发布</h1>
+<p class="source">来源：<a href="https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0">https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0</a> · 剪藏于 2026-10-07</p>
+<h1>ActivityWatch v0.14.0 发布</h1>
+<blockquote><p>转发备注（Telegram，2026-10-07）：ActivityWatch 终于好起来了，感谢 agentic coding（我猜），不然这个停滞那么久的项目不会在最近疯狂爆进度</p></blockquote>
+<ul>
+<li>发布：2026-10-06</li>
+<li>原文：<a href="https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0">https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0</a></li>
+<li>变更规模：v0.13.2 以来约两年、八个 beta、30+ 贡献者；完整 changelog 见 docs.activitywatch.net</li>
+</ul>
+<hr>
+<h2>发布说明（原文全文）</h2>
+<p>Huzzah! v0.14.0 is finally here! :tada:</p>
+<p>Almost two years since v0.13.2, and eight betas later. This is a big one: faster, steadier, a new desktop app, and an Android app that has caught up. And syncing between your devices works, local-first, with whatever sync tool you already use: it&#x27;s still early and opt-in, with a few rough edges (see <a href="#sync">Sync</a> below, or the <a href="https://activitywatch.net/blog/activitywatch-v0-14-0/#your-devices-together">announcement</a>). More than 30 people contributed.</p>
+<p>Since the last stable release, ActivityWatch also <a href="https://activitywatch.net/blog/one-million-downloads/">passed 1 million downloads</a>, and it&#x27;s now downloaded over 10,000 times a week. Thank you!</p>
+<p><strong>Read more:</strong> the <a href="https://activitywatch.net/blog/activitywatch-v0-14-0/">announcement</a> · the <a href="https://docs.activitywatch.net/en/latest/changelog.html#v0-14-0">full changelog</a> (about 1,000 changes, too long for this page)</p>
+<h2>Summary</h2>
+<ul>
+<li>⚡ Much faster, especially once you have years of data: dashboards load day by day and cache finished days, so long ranges no longer time out and repeat visits are near instant</li>
+<li>🐛 Steadier all round: crashed watchers restart on their own, a macOS memory leak and crash are fixed, and a long tail of annoyances is gone</li>
+<li>🔄 Sync between your devices works. It is local-first: no ActivityWatch server, no account. Point it at a folder you already sync with Syncthing, Dropbox or anything else, and each device&#x27;s data shows up on the others. It is still rough in places (it takes more disk space than it should, and setup is manual), so it is opt-in (<a href="https://docs.activitywatch.net/en/latest/syncing.html">how to set it up</a>)</li>
+<li>👀 See all your devices together: the Activity view can now merge any set of devices into one view</li>
+<li>📱 Android caught up: <a href="https://activitywatch.net/blog/activitywatch-android-0-14-stable/">ActivityWatch for Android 0.14</a> shipped last month, its first stable release since 2023, with far fewer crashes and the same sync built in</li>
+<li>🖥️ A new desktop app built on Tauri: same features as the classic one and lighter, but less battle-tested so far, so the classic app ships too and stays the default</li>
+<li>🌐 A refreshed web UI: a better timeline, custom date ranges, a work-time report, billable hours export, and category sets for switching between rule profiles</li>
+<li>🌍 ActivityWatch now speaks Swedish, German, Ukrainian, Russian and Chinese</li>
+<li>🔒 More control over what gets stored: filter sensitive window titles before they ever reach the database</li>
+<li>🛡️ For those who want it: put an API key on the server</li>
+<li>🍎 macOS: signed and notarized builds for Apple Silicon and Intel, and browser URLs are tracked properly again</li>
+<li>🐧 Linux: Wayland support out of the box in the new app, and arm64 builds</li>
+<li>🤖 For the AI crowd: one canonical query that returns clean, categorized events, so an assistant can answer questions about your time without a custom integration (<a href="https://docs.activitywatch.net/en/latest/examples/agents-and-ai.html">agents and AI</a>)</li>
+<li>And a lot more...</li>
+</ul>
+<h2>Honorable mentions</h2>
+<p>Many of this release&#x27;s features came from the community. Thank you:</p>
+<ul>
+<li>@0xbrayo for aw-tauri, from prototype to a release-ready app, and for aw-notify-rs and the Rust side of Android sync</li>
+<li>@BohdanRykush for the Ukrainian, German and Russian translations, and the original i18n setup and language picker (ActivityWatch/aw-webui#855)</li>
+<li>@JhihJian for the Simplified Chinese translation (ActivityWatch/aw-webui#865)</li>
+<li>@NickWick13 for the Swedish translation (ActivityWatch/aw-webui#947)</li>
+<li>@BelKed for rewriting the browser extension for Manifest V3 (ActivityWatch/aw-watcher-web#152), plus theme detection and top browser titles in the web UI</li>
+<li>@2e3s for awatcher, which gives the new app native Wayland support</li>
+<li>@nerumo for timeline swimlanes and the duration filter (ActivityWatch/aw-webui#679)</li>
+<li>@rrogerc for capturing URLs from Firefox-based browsers on macOS (ActivityWatch/aw-watcher-window#134)</li>
+<li>@hawai-i for the macOS Apple Events entitlement, which brought native browser URL capture back (#1411)</li>
+<li>@FractalMachinist for browser tracking on Android (ActivityWatch/aw-android#151)</li>
+<li>@Lorite for fixes to Android&#x27;s folder-picker sync (ActivityWatch/aw-android#221, ActivityWatch/aw-android#222)</li>
+<li>@wind-mask for the Tauri app&#x27;s headless <code>--daemon</code> and <code>--mini</code> modes</li>
+<li>@Q-Ze for fixing the multi-device view with synced data (ActivityWatch/aw-webui#969)</li>
+<li>@RTnhN for the universal columns visualization (ActivityWatch/aw-webui#733)</li>
+<li>@behdadmansouri for clearer import feedback (ActivityWatch/aw-webui#874)</li>
+<li>@fanxing11 for a string of fixes across the watchers, client and notifications</li>
+</ul>
+<h2>Installation</h2>
+<p>See the <a href="https://docs.activitywatch.net/en/latest/getting-started.html">getting started guide in the documentation</a>.</p>
+<h2>Downloads</h2>
+<h3>Classic distribution</h3>
+<ul>
+<li><a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-v0.14.0-windows-x86_64-setup.exe"><strong>Windows</strong></a> (.exe installer)</li>
+<li><strong>macOS</strong>: <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-v0.14.0-macos-x86_64.dmg">Intel</a> | <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-v0.14.0-macos-arm64.dmg">Apple Silicon</a> (.dmg)</li>
+<li><strong>Linux</strong>: <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-v0.14.0-linux-x86_64.zip">.zip</a> | <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-linux-x86_64.AppImage">.AppImage</a> | <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-v0.14.0-linux-x86_64.deb">.deb</a></li>
+</ul>
+<h3>Tauri distribution (experimental — native Wayland support on Linux)</h3>
+<ul>
+<li><a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-tauri-v0.14.0-windows-x86_64-setup.exe"><strong>Windows</strong></a> (.exe installer)</li>
+<li><strong>macOS</strong>: <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-tauri-v0.14.0-macos-x86_64.dmg">Intel</a> | <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-tauri-v0.14.0-macos-arm64.dmg">Apple Silicon</a> (.dmg)</li>
+<li><strong>Linux</strong>: <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-tauri-0.14.0-linux-x86_64.AppImage">.AppImage</a> | <a href="https://github.com/ActivityWatch/activitywatch/releases/download/v0.14.0/activitywatch-tauri-v0.14.0-linux-x86_64.zip">.zip</a></li>
+</ul>
+<h2>Contributors</h2>
+<p>Thanks to everyone who contributed to this release:</p>
+<p>@0xbrayo, @2e3s, @almirb, @amsam0, @BelKed, @deancureton, @erikbjare, @fanxing11, @Game4Move78, @hawai-i, @HomeArchbishop, @istudyatuni, @kenoma-hld, @luisgerhorst, @matt-seb-ho, @MBK-fr, @moodyhunter, @musicinmybrain, @nerumo, @NickWick13, @Noorts, @petrroll, @powellnorma, @Q-Ze, @reddaisyy, @rrogerc, @RTnhN, @Senophyx, @TiberiusNemesis, @TimeToBuildBob, @vdonich, @yuhldr</p>
+<hr>
+<h2>More detail</h2>
+<h3>Faster</h3>
+<p>Measured on a real 9-year database (9.2 million events, 1.8 GB) on an M2 Mac, with each version&#x27;s own dashboard queries. The new dashboard asks for long ranges one day at a time, so the servers are compared on that same workload:</p>
+<table><thead><tr><th>Year view, 365 daily queries</th><th>v0.13.2</th><th>v0.14 first load</th><th>v0.14 repeat load</th></tr></thead><tbody><tr><td>Classic app (Python server)</td><td>120 s</td><td>41 s</td><td><strong>0.6 s</strong></td></tr><tr><td>Tauri app (Rust server)</td><td>139 s</td><td>32 s</td><td><strong>0.2 s</strong></td></tr></tbody></table>
+<p>The v0.13.2 dashboard fetched a Year as a single request instead. That took 120 s on the Python server (past the default 30 s timeout, so it failed) and 19 s on the Rust server. Asking day by day is what makes caching, progress and per-day charts possible. All time across nine years reopens in 5 s on the classic app; the Tauri app doesn&#x27;t cache All time yet (<a href="https://github.com/ActivityWatch/aw-server-rust/issues/784">aw-server-rust#784</a>). Under the hood: new database indexes, SQLite WAL mode, cached category rules (categorizing a year of window titles went from 53 s to 10 s) and streaming exports.</p>
+<h3>Sync</h3>
+<p><a href="https://docs.activitywatch.net/en/latest/syncing.html">aw-sync</a> copies each device&#x27;s data into a sync folder (<code>~/ActivityWatchSync</code> by default). You choose how that folder moves between devices: Syncthing, Dropbox, a network drive, anything that syncs files. Your data never touches a server of ours. Each device only writes its own files and opens everyone else&#x27;s read-only, so devices can&#x27;t corrupt each other, and synced data shows up as <code>-synced-from-</code> buckets that you can query, merge in the Activity view, or ignore.</p>
+<p>This cycle we ran it on our own desktops and phones and fixed what we hit: duplicate events after a resume, one broken device aborting a whole sync, phone data not being picked up, and a new <code>aw-sync status</code> that tells you what each device has synced. Known rough edges: every device keeps a full copy of every other device&#x27;s data, so it uses more disk than it should (a much more compact format is in the works), settings and deletions don&#x27;t sync, and setup is manual. It isn&#x27;t started by default: turn it on in the app&#x27;s modules menu, or run <code>aw-sync</code>.</p>
+<h3>Android</h3>
+<p><a href="https://activitywatch.net/blog/activitywatch-android-0-14-stable/">ActivityWatch for Android 0.14</a> (v0.14.0 to v0.14.2, September) is the first stable Android release since 2023. User-perceived crashes went from about 7.8% to under 1%. It adds alerts, a home-screen widget, Firefox and Chrome tracking, CSV and JSON export, and the same sync: pick a folder, and your phone&#x27;s data shows up on your desktop.</p>
+<h3>More reliable</h3>
+<ul>
+<li>Crashed watchers restart automatically, with crash logs, in both apps; only one instance runs at a time</li>
+<li>macOS window watcher: fixed a crash on unusual window titles and a leak of up to ~359 MB of memory per day on busy machines</li>
+<li>AFK: locking the screen counts as AFK on macOS, held keys count once, gamepads count on Linux, recovery after an X server restart, and a Windows idle-time overflow after 49.7 days is fixed</li>
+<li>Data safety: heartbeats are rejected cleanly under load instead of risking corruption, a damaged database recovers on startup, and imports merge into existing buckets instead of failing</li>
+<li>The Python and Rust servers now return the same query results, checked by a new parity test suite (<a href="https://docs.activitywatch.net/en/latest/server-compare.html">server comparison</a>)</li>
+</ul>
+<h3>The new app (Tauri)</h3>
+<p><a href="https://github.com/ActivityWatch/aw-tauri">aw-tauri</a> ships alongside the classic aw-qt app for Windows, macOS (Apple Silicon and Intel) and Linux (x86_64 and arm64). It has its own window, runs the Rust server inside the app, is smaller to download, supports Wayland on Linux, and updates itself on macOS and Linux (on Windows, install new versions manually for now). The story: <strong><a href="https://activitywatch.net/blog/introducing-tauri/">A lighter, faster ActivityWatch with Tauri</a></strong>.</p>
+<h3>Also new</h3>
+<ul>
+<li>Web UI: timeline swimlanes and AFK/category/duration filters, &quot;merge by app&quot;, keyboard and scroll panning, rule priority and field-scoped regex rules, top browser titles, top stopwatch events, CSV export that streams large buckets, and bulk delete of a device&#x27;s buckets</li>
+<li>Browsers: Arc, Dia, Zen, Helium, Floorp, Firefox ESR and more Chromium variants; URLs from Firefox-based browsers on macOS</li>
+<li>Notifications rewritten in Rust (aw-notify-rs), with a settings panel. They are now off until you enable them</li>
+<li>Start at login is a toggle in the app</li>
+<li>iOS: Screen Time data imported with aw-import-screentime shows up correctly</li>
+</ul>
+<h3>Upgrade notes</h3>
+<ul>
+<li>The first start after upgrading updates the database indexes once. Your data isn&#x27;t changed. On large databases this takes a while (about 30 s for the classic app and a minute for the Tauri app on a 1.8 GB database), and the dashboard may not connect until it&#x27;s done. Leave ActivityWatch running and reload.</li>
+<li>Notifications (aw-notify) are now opt-in. Enable them in Settings if you used them before.</li>
+<li>macOS 12 or newer is required.</li>
+</ul>
+<h2>Supporting ActivityWatch</h2>
+<p>ActivityWatch has no ads, no venture funding and no data business. It is maintained by a tiny team, and <a href="https://activitywatch.net/go/?src=release-notes">ActivityWatch Pro</a>, our patronage subscription, keeps releases like this coming. <strong>From $5/month</strong>, and it doesn&#x27;t unlock anything: nothing is locked. Prefer a one-time contribution? See <a href="https://activitywatch.net/donate/">Donate</a>, or <a href="https://activitywatch.net/go/?src=release-notes&amp;to=gh-sponsors">sponsor us on GitHub</a>.</p>
+<hr>
+<h2>Full changelog</h2>
+<p>About 1,000 changes across 13 repositories, too long for this page: see the <a href="https://docs.activitywatch.net/en/latest/changelog.html#v0-14-0">v0.14.0 changelog in the documentation</a>, or <a href="https://github.com/ActivityWatch/activitywatch/compare/v0.13.2...v0.14.0">compare v0.13.2...v0.14.0</a>.</p>
+<p>Announcement: <a href="https://activitywatch.net/blog/activitywatch-v0-14-0/">ActivityWatch v0.14.0: faster, steadier, synced, and a new app</a></p>
+</article>
+<script type="application/json" data-single-file-options>{"generator": "clip-intake", "saveUrl": "https://github.com/ActivityWatch/activitywatch/releases/tag/v0.14.0", "saveDate": 1791378403000, "title": "ActivityWatch v0.14.0 发布", "info": {"description": "转发备注（Telegram，2026-10-07）：ActivityWatch 终于好起来了，感谢 agentic coding（我猜），不然这个停滞那么久的项目不会在最近疯狂爆进度"}}</script>
+</body>
+</html>
